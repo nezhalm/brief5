@@ -1,0 +1,6 @@
+# means all options except MultiViews and Indexes for the folder.
+Options All -Indexes
+# is a component of web server software that allows you to rewrite or redirect uniform resource locators (URLs)
+RewriteEngine On 
+RewriteBase /brief5/
+RewriteRule ^([-a-zA-Z0-9]+)$ index.php?page=$1
