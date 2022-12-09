@@ -4,7 +4,7 @@
 
 <head>
 	<title>LOGIN</title>
-	<link rel="stylesheet" type="text/css" href="logincss.css?v=<?php echo time(); ?>">
+	<link rel="stylesheet" type="text/css" href="style.css?v=<?php echo time(); ?>">
 </head>
 
 <body>

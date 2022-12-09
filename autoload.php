@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once("bootstrap.php");
 spl_autoload_register('autoload');//callback function
 function autoload($class_name){
     $array_paths = array(
@@ -10,7 +11,7 @@ function autoload($class_name){
     );
 
     $parts = explode('\\', $class_name);//
-    echo('------'.$class_name.'------') ;
+    // echo('------'.$class_name.'------') ;
   
     $name = array_pop($parts);//supprier le premier element et return le dernier
     

@@ -6,14 +6,13 @@ require_once('./autoload.php');
 $home = new HomeController();
 $pages = ['home', 'add', 'update', 'delete','login'];
 
-
 if(isset($_GET['page'])){
     if(in_array($_GET['page'],$pages)){
         $page = $_GET['page'];
         $home->index($page);
         $data = new BijouxController();
         $bijoux = $data->GetAllBijoux();
-        var_dump($bijoux);
+     
     }
     else{
     include('views/includes/404.php');
