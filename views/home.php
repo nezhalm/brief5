@@ -2,18 +2,40 @@
 <?php
 
 require_once './autoload.php';
-$data = new BijouxController();
+if(isset($_POST['find'])){
+  $data = new BijouxController();
+  $bijoux = $data->findBijoux();
+}else{
+  $data = new BijouxController();
 $bijoux = $data->GetAllBijoux();
-// print_r($bijoux);
+}
+
 ?>
-<div class="container">
+<div class="container ">
+    <?php 
+  include('./views/includes/alert.php');
+  ?>
     <div class="row mt-4">
+    
         <div class="col-md-10 mx-auto">
-             <div class="card">
-              <div class="card-body bg-light">
-                <a href="<?php echo BASE_URL;?>add">
+     
+             <div class="card"> 
+          
+              <div class="card-body bg-light">    
+      <!-- ==recherche============================== -->
+      <form method="post" class="float-right d-flex flex-row mb-2 ">
+           <input type="text" name="search" placeholder="recherche un produit">
+             <button class="btn btn-info btn-sm ml-2" name="find" type="submit"><i class="fas fa-search"></i></button>
+      </form>
+      <!-- =============================================== -->
+                <a href="<?php echo BASE_URL;?>add"  >
                 <i class="fa-regular fa-plus"></i>
               </a>
+             
+               <a href="<?php echo BASE_URL;?>home" class=" btn btn-primary ml-3">
+                <i class="fa fa-home"></i>
+              </a> 
+            
               <table class="table">
   <thead>
     <tr>
@@ -21,7 +43,8 @@ $bijoux = $data->GetAllBijoux();
       <th scope="col">prix</th>
       <th scope="col">quantite</th>
       <th scope="col">image</th>
-      <th scope="col">action</th>
+      <th scope="col">update</th>
+      <th scope="col">delete</th>
     </tr>
   </thead>
   <tbody>
@@ -31,20 +54,21 @@ $bijoux = $data->GetAllBijoux();
       <th scope="row"><?php echo $bijoux['nom_produit']; ?></th>
       <td><?php echo $bijoux['prix']; ?></td>
       <td><?php echo $bijoux['quantite']; ?></td>
-      <td><img src="image/uploade/<?= $bijoux['image'];?>" alt="img"></td>
-      <td class="d-flex flex-row">
+      <td><img style="width: 60px;" src="./image/<?php echo $bijoux['image'];?>" alt="img"></td>
+      <td>
         <!-- form d'icon update  -->
-           <form methode="post" class="mr-1" action="update">
+           <form method="post" class="mr-1" action="update">
             <!-- l'orsque on clic -> page update -->
-                 <input type="hidden" name="id" value="<?php echo $bijoux['id_produit']; ?>">
-                 <button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></button>
+                 <input type="hidden" name="id" value="<?php echo $bijoux['id'];?>">
+                 <button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></button></td>
+  <td >  
            </form>
                    <!-- form d'icon delete  -->
-                   <form methode="post" class="mr-1" action="delete">
-                 <input type="hidden" name="id" value="<?php echo $bijoux['id_produit']; ?>">
+                   <form method="post" class="mr-1" action="delete">
+                 <input type="hidden" name="id" value="<?php echo $bijoux['id'];?>">
                  <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
            </form>
-      </td>
+           </td>
     </tr>
     <?php endforeach;?>
 
