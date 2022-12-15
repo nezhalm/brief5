@@ -1,21 +1,10 @@
 <?php
 
+$_SESSION['login'] = true;
 
 require_once './views/includes/header.php';
 require_once './autoload.php';
-
-if (isset($_POST['id'])) {
-    $exitbijoux = new BijouxController();
-    $bijoux =  $exitbijoux->getOneBijoux();
-}
-
-if (isset($_POST['submit'])) {
-    // echo 'jhjkhjkhjkh jhjk hkhjk hjkh jkh jkh jk k j h';
-    // die();
-    $exit = new BijouxController();
-    $exit->updateBijoux();
-}
-
+$bijoux = Instances::updateInstance();
 ?>
 
 <div class="container">
@@ -41,10 +30,11 @@ if (isset($_POST['submit'])) {
                             <input class="form-control" type="text" name="prix" value="<?php echo $bijoux->prix; ?>">
                             <label class="form-text">quantité</label>
                             <input class="form-control" type="number" name="quantite" value="<?php echo $bijoux->quantite; ?>">
-                            <label class="form-text">image
-                                <img style="width: 60px;" src="./image/<?=$bijoux->image?>" alt="img">
-                                <input class="form-control" id="add_img_input" name='image' type="file" accept="image/png, image/jpg, image/gif, image/jpeg" value="<?= $bijoux->image ?>" />
-                            </label>
+                            <label class="form-text">image </label>
+                              
+                                <input style="width: 400px;" class="form-control" id="add_img_input" name='image' type="file" accept="image/png, image/jpg, image/gif, image/jpeg" value=<img style="width: 60px;" src="./image/<?=$bijoux->image?>" alt="img">
+ 
+                           
 
                             <button name="submit" class="btn btn-primary mt-3 ">modifier</button>
                         </form>

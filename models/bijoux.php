@@ -84,7 +84,6 @@ class Bijoux
     {
         $search = $data['search'];
         try {
-
             $stmt = DB::connect()->prepare('SELECT * FROM bijoux WHERE nom_produit LIKE ? ');
             $stmt->execute(array('%' . $search . '%'));
             $bijoux = $stmt->fetchAll();

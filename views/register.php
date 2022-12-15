@@ -1,17 +1,6 @@
-
-<?php
-require_once 'includes/header.php';
-require_once './autoload.php';
-
-if(isset($_POST['submit'])){
-    $creatBijoux = new UsersController();
-    $creatBijoux->register();
-}
-?>
 <div class="container">
     <div class="row mt-4">
         <div class="col-md-6 mx-auto">
-			<?php include('./views/includes/alert.php');?>
              <div class="card">
 				<div class="card-header">
 					<h3 class="text-center">Inscription</h3>
@@ -38,7 +27,7 @@ if(isset($_POST['submit'])){
 
          </div>
 		 <div class="card-footer">
-			<a href=" <?php echo BASE_URL ;?>login" class="btn btn-link">Connexion</a>
+			<a href="login" class="btn btn-link">Connexion</a>
 		 </div>
                 </div>
              </div>

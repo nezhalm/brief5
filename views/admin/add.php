@@ -1,20 +1,18 @@
 <?php
+
+$_SESSION['login'] = true;
+
 require_once 'views/includes/header.php';
 require_once './autoload.php';
-if(isset($_POST['submit'])){
-     $newBijoux = new BijouxController();
-// creer l'objet men lcontroller 
-     $newBijoux->addBijoux();
-// print_r($bijoux);
-}
 
-
+   Instances::addInstance();
+   include_once './views/includes/navbar.php';
 ?>
 <div class="container">
     <div class="row mt-4">
         <div class="col-md-10 mx-auto">
              <div class="card">
-              <div class="card-body bg-light">
+              <div class="card-body bg-light mt-5">
                <a href="<?php echo BASE_URL;?>" class="btn btn-sm btn-secondery mr-2 mb-2">
                 <i class="fa fa-home"></i>
               </a> 

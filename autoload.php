@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once("bootstrap.php");
+require_once("./controllers/instanciation.php");
 spl_autoload_register('autoload');//callback function
 function autoload($class_name){
     $array_paths = array(

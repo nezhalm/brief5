@@ -1,3 +1,8 @@
+<?php
+$_SESSION['login'] = false;
+require_once('./controllers/UsersController.php');
+include_once('./controllers/bijouxcontroller.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,8 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- style css link  -->
-    <link rel="stylesheet" href="./style/style.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="./style/animation.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./views/stylegallery.css?v=<?php echo time(); ?>">
+
     <title>PlayTech - Home</title>
 
     <!-- google font  link-->
@@ -30,91 +35,38 @@
 </head>
 
 <body>
-    <!-- header (nav bar) -->
+
     <?php
     include_once "./views/includes/navbar.php";
+       include "./script.php";
     ?>
-    <section class="banner" id="intro">
-        <main class="home">
-            <div class="home-text">
-                <h1>GAMING <br>STORE</h1>
-                <h5>votre meilleure endroit gaming</h5>
-                <a href="#" class="home-btn">Shop Now</a>
-            </div>
-            <div class="home-img">
-                <img src="./image/home-img/4.png" alt="">
-            </div>
-        </main>
-    </section>
+    
+       <?php foreach ($bijouxx as $bijoux): ?>
+   <div class="roW">
+    
+                    <img src="./image/<?= $bijoux['image']; ?>" alt="gg">
+                    <div class="menu-text">
+                        <div class="menu-left">
+                            <h4><?= $bijoux['nom_produit'];  ?></h4>
+                        </div>
+                        <div class="menu-right">
+                            <h5><?=$bijoux['prix']; ?>DH</h5>
+                        </div>
+                    </div>
+                   
 
-
-    <section id="feature">
-        <div class="fe-box">
-            <img src="image/feature/free-shipping.png" alt="image">
-            <h6>free shipping</h6>
-        </div>
-        <div class="fe-box">
-            <img src="image/feature/24-7.png" alt="image">
-            <h6>24/7 support</h6>
-        </div>
-        <div class="fe-box">
-            <img src="image/feature/save-money.png" alt="image">
-            <h6>Save money</h6>
-        </div>
-        <div class="fe-box">
-            <img src="image/feature/mobile-order.png" alt="image">
-            <h6>Online Order</h6>
-        </div>
-        <div class="fe-box">
-            <img src="image/feature/promotions.png" alt="image">
-            <h6>promotions</h6>
-        </div>
-        <div class="fe-box">
-            <img src="image/feature/happy.png" alt="image">
-            <h6>Happy Sell</h6>
-        </div>
-    </section>
-
-    <!-- <div class="sideR">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="./image/back-img/call-of-duty-warzone-update-2-keyart-en-01-03nov22.webp" alt="First slide">
+                    <div class="foteerPlat">
+                        <div class="addPlat">
+                            <a href="./admin/modifier_produit.php?id=<?= $row['id_produit'] ?>"><i class='bx bxs-edit'></i></a>
+                            <a href="./admin/supprimer_produit.php?id=<?= $row['id_produit'] ?>" onclick="return checkdelet('<?= $row['libelle_produit'] ?>')"><i class='bx bxs-trash-alt'></i></a>
+                        </div>
+                    </div>
                 </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="./image/back-img/sonic-frontiers-keyart-01-ps4-ps5-25aug22$en.webp" alt="Second slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="./image/back-img/spider-man-miles-morales-PC-keyart-26oct22.webp" alt="Third slide">
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-        </div> -->
+                <?php endforeach;?>
 
 
 
-    <div class="mainToContact">
-        <div class="manadger">
-            <img src="./image/back-img/manadger.png" alt="">
-        </div>
-        <div class="blabla">
-            <h2>Nous pouvons toujours endendez votre voie</h2>
-            <a href="./html/contact.html"><button>contact</button></a>
-        </div>
-    </div>
+    
 
 
     <a href="#intro" class="sctrooL">

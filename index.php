@@ -1,36 +1,32 @@
 <?php
-// require_once './controllers/HomeController.php';
-// require_once('./controllers/bijouxcontroller.php');
- require_once('./views/includes/header.php');
-require_once('./autoload.php');
+ require_once('./autoload.php');
 $home = new HomeController();
-$pages = ['home', 'add', 'update', 'delete','login','gestion'];
-// if(isset($_SESSION['logged']) && $_SESSION['logged'] === true){
-   
+$pages = ['home','gallery','contact'];
+$adminPages = ['admin', 'add', 'update', 'delete'];
 
 if(isset($_GET['page'])){
     if(in_array($_GET['page'],$pages)){
         $page = $_GET['page'];
         $home->index($page);
         $data = new BijouxController();
-        $bijoux = $data->GetAllBijoux();
-        
+        $bijoux = $data->GetAllBijoux(); 
+    }elseif($_GET['page']==="login"){
+        require_once 'autoload.php';
+        $home->login();
+    }elseif($_GET['page']==="register"){
+        require_once 'views/includes/header.php';
+        require_once 'autoload.php';
+        $home->register();
+    }
+    elseif(in_array($_GET['page'],$adminPages) && $_SESSION['login']==true){
+        $home->index2($_GET['page']);
+    }elseif($_SESSION['login']==false){
+        Redirect::to('home');
     }
     else{
     include('views/includes/404.php');
     }
 }else{
-    $home->index('gestion');
+    header("location: login");
 }
-?>
-
-<?php 
-
-
-// }else if(isset($_GET['page']) && $_GET['page'] === 'register'){
-//     $home->index('register');
-// }else{
-//     $home->index('login');
-
-// }
 ?>

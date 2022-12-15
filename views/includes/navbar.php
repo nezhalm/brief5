@@ -16,48 +16,30 @@
     </a>
     <nav id="nav-bar">
         <ul class="nav-bar">
+            
+                <li><a href="gestion">Home</a></li>
+                <li><a href="gallery">gallery</a></li>
             <?php
-            if ($_SESSION['page'] == 'home') {
-            ?>
-                <li><a class="active" href="./index.php">Home</a></li>
-            <?php
-            } else {
-            ?>
-                <li><a href="./index.php">Home</a></li>
-            <?php
-            }
-            if ($_SESSION['page'] == 'gallery') {
-            ?>
-                <li><a class="active" href="./gallery.php?id=0">gallery</a></li>
-            <?php
-            } else {
-            ?>
-                <li><a href="./gallery.php?id=0">gallery</a></li>
-            <?php
-            }
            
-           
-            if (isset($_SESSION['name']) && $_SESSION['admin']==1) {
-                if ($_SESSION['page'] == 'gestion') {
-                ?>
-                    <li><a class="active" href="./gestion.php?id=0">Gestion</a></li>
-                <?php
-                } else {
-                ?>
-                    <li><a href="./gestion.php?id=0">Gestion</a></li>
-            <?php
+            if (isset($_SESSION['nom_client']) && isset($_SESSION['admin'])) {
+                if (isset($_SESSION['page'])) {
+
+                    echo '<li><a href="home">Gestion</a></li>';
+                
                 }
             }
             ?>
+                    <li><a  href="contact">contact</a></li>
+            
         </ul>
     </nav>
     <div class="right-nav">
         <?php
-        if (isset($_SESSION['name'])) {
+        if (isset($_SESSION['nom_client'])) {
         ?>
             <div class="loginD">
-                <li class="nam"><i class='bx bx-user'></i><?php echo $_SESSION['name'] ?></li>
-                <a href="./connection/logout.php">Log out</a>
+                <li class="nam"><i class='bx bx-user'></i><?php echo $_SESSION['nom_client'] ?></li>
+                <a href="controllers/logout.php">Log out</a>
             </div>
         <?php
         } else {

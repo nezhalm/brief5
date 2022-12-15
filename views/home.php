@@ -1,86 +1,127 @@
-
 <?php
-
-require_once './autoload.php';
-if(isset($_POST['find'])){
-  $data = new BijouxController();
-  $bijoux = $data->findBijoux();
-}else{
-  $data = new BijouxController();
-$bijoux = $data->GetAllBijoux();
-}
-
+$_SESSION['login'] = false;
+require_once('./controllers/UsersController.php');
 ?>
-<div class="container ">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- style css link  -->
+    <link rel="stylesheet" href="./css/style.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./css/animation.css?v=<?php echo time(); ?>">
+    <title>PlayTech - Home</title>
+    <!-- google font  link-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:ital,wght@0,100;0,200;0,300;1,300;1,400;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!-- font awesome link "icone" -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- boxicon link -->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+    <!-- bootstrap link -->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- meta data include -->
+
+</head>
+
+<body>
+    <!-- header (nav bar) -->
     <?php 
-  include('./views/includes/alert.php');
-  ?>
-    <div class="row mt-4">
-    
-        <div class="col-md-10 mx-auto">
+      include_once './views/includes/navbar.php';
+    ?>
      
-             <div class="card"> 
-          
-              <div class="card-body bg-light">    
-      <!-- ==recherche============================== -->
-      <form method="post" class="float-right d-flex flex-row mb-2 ">
-           <input type="text" name="search" placeholder="recherche un produit">
-             <button class="btn btn-info btn-sm ml-2" name="find" type="submit"><i class="fas fa-search"></i></button>
-      </form>
-      <!-- =============================================== -->
-                <a href="<?php echo BASE_URL;?>add"  >
-                <i class="fa-regular fa-plus"></i>
-              </a>
-             
-               <a href="<?php echo BASE_URL;?>home" class=" btn btn-primary ml-3">
-                <i class="fa fa-home"></i>
-              </a> 
+
+    <section class="banner" id="intro">
+        <main class="home">
+            <div class="home-text">
+                <h1>GEWELERY <br>STORE</h1>
+                <h5>THE BEST GEZELERY FOR YOU</h5>
+                <a href="#" class="home-btn">Shop Now</a>
+            </div>
+            <div class="home-img">
+                <img style="height: 400px;" src="./image/about2.jpg" alt="">
+            </div>
+        </main>
+    </section>
+
+
+    <section id="feature">
+        <div class="fe-box">
+            <img src="./image/about2.jpg" alt="image">
             
-              <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">nom du produit</th>
-      <th scope="col">prix</th>
-      <th scope="col">quantite</th>
-      <th scope="col">image</th>
-      <th scope="col">update</th>
-      <th scope="col">delete</th>
-    </tr>
-  </thead>
-  <tbody>
-
-    <?php foreach ($bijoux as $bijoux): ?>
-    <tr>
-      <th scope="row"><?php echo $bijoux['nom_produit']; ?></th>
-      <td><?php echo $bijoux['prix']; ?></td>
-      <td><?php echo $bijoux['quantite']; ?></td>
-      <td><img style="width: 60px;" src="./image/<?php echo $bijoux['image'];?>" alt="img"></td>
-      <td>
-        <!-- form d'icon update  -->
-           <form method="post" class="mr-1" action="update">
-            <!-- l'orsque on clic -> page update -->
-                 <input type="hidden" name="id" value="<?php echo $bijoux['id'];?>">
-                 <button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></button></td>
-  <td >  
-           </form>
-                   <!-- form d'icon delete  -->
-                   <form method="post" class="mr-1" action="delete">
-                 <input type="hidden" name="id" value="<?php echo $bijoux['id'];?>">
-                 <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
-           </form>
-           </td>
-    </tr>
-    <?php endforeach;?>
-
-
-
-
-                  </tbody>
-               </table>
-              </div>
-             </div>
         </div>
+        <div class="fe-box">
+            <img src="./image/about2.jpg" alt="image">
+           
+        </div>
+        <div class="fe-box">
+            <img src="./image/about2.jpg" alt="image">
+        </div>
+        <div class="fe-box">
+            <img src="./image/about2.jpg" alt="image">
+        </div>
+        <div class="fe-box">
+            <img src="./image/about2.jpg" alt="image">
+        </div>
+        <div class="fe-box">
+            <img src="./image/about2.jpg" alt="image">
+        </div>
+    </section>
 
+    <!-- <div class="sideR">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="./image/back-img/call-of-duty-warzone-update-2-keyart-en-01-03nov22.webp" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="./image/back-img/sonic-frontiers-keyart-01-ps4-ps5-25aug22$en.webp" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="./image/back-img/spider-man-miles-morales-PC-keyart-26oct22.webp" alt="Third slide">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        </div> -->
+
+
+
+    <div class="mainToContact">
+        <div class="manadger">
+            <img src="./image/back-img/manadger.png" alt="">
+        </div>
+        <div class="blabla">
+            <h2>Nous pouvons toujours endendez votre voie</h2>
+            <a href="./html/contact.html"><button>contact</button></a>
+        </div>
     </div>
 
-</div>
+
+    <a href="#intro" class="sctrooL">
+        <i class='bx bxs-up-arrow-circle bx-md'></i>
+    </a>
+    <?php 
+      include_once './views/includes/footer.php';
+    ?>
+</body>
+
+</html>

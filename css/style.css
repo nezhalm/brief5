@@ -18,7 +18,7 @@
 }
 
 body {
-  background-color: #f8f9ff !important;
+  background-color: #eed9ee !important;
   color: var(--text-color);
 }
 
@@ -71,7 +71,7 @@ body {
 }
 
 .home-btn:hover {
-  background: #b1d8fa;
+  background: #190018;
   font-size: 17px;
   color: #1d2631;
   font-weight: 1000;

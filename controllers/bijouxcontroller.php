@@ -20,7 +20,7 @@ class BijouxController{
             $result = Bijoux::add($data);
             if($result === 'ok'){
                 session::set('success','le produit est ajoute');
-                Redirect::to('home');
+                Redirect::to('admin');
             }else{
                 echo $result;
             }
@@ -42,7 +42,7 @@ class BijouxController{
 
 public function updateBijoux(){
     
-    if(isset($_POST['submit']) && $_FILES['image']['size']>0){
+    if(isset($_POST['submit'])){
         $data = array(
             'id'=>$_POST['id'],
             'nom_produit' => $_POST['nom_produit'],
@@ -54,7 +54,7 @@ public function updateBijoux(){
         $result = Bijoux::update($data);
         if($result === 'ok'){
             session::set('success','le produit est modifier');
-                Redirect::to('home');
+                Redirect::to('admin');
         }else{
             echo $result;
         }
@@ -84,11 +84,14 @@ public function deleteBijoux(){
         $result = Bijoux::supp($data);
         if($result === 'ok'){
             session::set('success','le produit est supprimer');
-            Redirect::to('home');
+            Redirect::to('admin');
         }else{
             echo $result;
         }
      }
+}
+public function afficheBijoux(){
+
 }
 ////////////////////////////////////////////////////////////////////////////////
 }
@@ -105,6 +108,9 @@ function deleteView(){
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
+
+$prods = new BijouxController();
+$bijouxx=$prods->GetAllBijoux();
 
 
 ?>

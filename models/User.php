@@ -15,15 +15,17 @@ class User{
     }
     static public function login($data){
     $id_client = $data['nom_client'];
+        $pass = $data['password'];
     try{
-        $query = 'SELECT * FROM user where nom_client=:nom_client ';
+        $query = 'SELECT * FROM user where nom_client=:nom_client AND password=:password';
         $stmt=DB::connect()->prepare($query);
-        $stmt->execute(array(":nom_client" => $id_client));
-        $user = $stmt->fetch(PDO::FETCH_OBJ);
-        return $user;
-        if($stmt->execute()){
-            return 'ok';
+        if($stmt->execute(array(":nom_client" => $id_client,":password" =>$pass)))
+        {
+
+            $user = $stmt->fetch(PDO::FETCH_OBJ);
+            return $user;
         }
+            return null;
       }catch(PDOExeption $e){
         echo 'erreur'.$e->getMessage();
       }
